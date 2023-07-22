@@ -1,0 +1,1 @@
+RAILS_ENV=production ./bin/bundle exec ruby -Itest test/models/message_test.rb
