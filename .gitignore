@@ -96,3 +96,6 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 Gemfile.lock
 pnpm-lock.yaml
+yarn.lock
+.yarn
+.yarnrc.yml
