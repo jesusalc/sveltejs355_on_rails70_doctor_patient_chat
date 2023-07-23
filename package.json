@@ -1,17 +1,84 @@
 {
   "name": "app",
-  "dependencies": {
-    "@hotwired/stimulus": "^3.2.1",
-    "@hotwired/turbo-rails": "^7.2.4",
-    "autoprefixer": "^10.4.13",
-    "esbuild": "^0.16.13",
-    "esbuild-svelte": "^0.7.3",
-    "postcss": "^8.4.20",
-    "svelte": "^3.55.0",
-    "tailwindcss": "^3.2.4"
+  "version": "1.0.0",
+  "@comments scripts": {
+    "dev": "develop with blazing fast rebuilds",
+    "dev:features": "develop with features like SSR and serviceworker enabled",
+    "build": "run build scripts below",
+    "build:app": "build single page application (SPA)",
+    "build:static": "Generate static pages",
+    "serve": "serve content in 'dist' folder",
+    "rollup": "run the rollup bundler",
+    "nollup": "run the nollup no-bundler",
+    "routify": "run routify"
   },
   "scripts": {
+    "dev": "run-p routify nollup",
+    "dev:ssr": "run-p routify rollup",
     "build": "node ./esbuild.config.js",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "build:runs": "run-s build:*",
+    "build:app": "routify -b && rollup -c",
+    "build:static": "spank",
+    "serve": "spassr --ssr",
+    "rollup": "rollup -cw",
+    "nollup": "nollup -c",
+    "routify": "routify"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/actioncable": "^7.0.6",
+    "@sideway/address": "^5.0.0",
+    "joi": "^17.9.2",
+    "socket.io-client": "^4.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@roxi/routify": "^2.18.12",
+    "autoprefixer": "^10.4.14",
+    "core-js": "^3.31.1",
+    "cross-env": "^7.0.3",
+    "ejs": "^3.1.9",
+    "esbuild": "^0.16.13",
+    "esbuild-svelte": "^0.7.3",
+    "fs-extra": "^11.1.1",
+    "nollup": "^0.21.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.27",
+    "postcss-import": "^15.1.0",
+    "resolve": "^1.22.2",
+    "rollup": "2.78.0",
+    "rollup-plugin-hot": "^0.1.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.6",
+    "rollup-plugin-svelte-hot": "1.0.0-8",
+    "rollup-plugin-workbox": "^8.0.1",
+    "spank": "^2.0.0",
+    "spassr": "^2.6.0",
+    "svelte": "^4.1.1",
+    "svelte-preprocess": "^5.0.4",
+    "tailwindcss": "^3.3.3",
+    "tossr": "^1.4.2"
+  },
+  "spassr": {
+    "assetsDir": [
+      "dist",
+      "assets"
+    ],
+    "script": "app/assets/build/application.js",
+    "ssrOptions": {
+      "inlineDynamicImports": true
+    }
+  },
+  "spank": {
+    "blacklist": [
+      "/example/modal/basic/4"
+    ]
   }
 }
