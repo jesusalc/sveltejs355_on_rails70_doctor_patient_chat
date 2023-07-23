@@ -7,5 +7,8 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MessagesController from "./messages_controller"
+application.register("messages", MessagesController)
+
 import SvelteController from "./svelte_controller"
 application.register("svelte", SvelteController)
