@@ -10,31 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2020_04_29_182259) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_075832) do
   create_table "inboxes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "new_messages", default: 0
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_inboxes_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "outbox_id"
-    t.integer "inbox_id"
     t.boolean "read", default: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.integer "inbox_id", null: false
+    t.integer "outbox_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["inbox_id"], name: "index_messages_on_inbox_id"
     t.index ["outbox_id"], name: "index_messages_on_outbox_id"
   end
 
   create_table "outboxes", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_outboxes_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
@@ -44,8 +49,13 @@ ActiveRecord::Schema[7.0].define(version: 2020_04_29_182259) do
     t.boolean "is_admin", default: false
     t.string "first_name"
     t.string "last_name"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "inboxes", "users"
+  add_foreign_key "messages", "inboxes"
+  add_foreign_key "messages", "outboxes"
+  add_foreign_key "outboxes", "users"
+  add_foreign_key "payments", "users"
 end
