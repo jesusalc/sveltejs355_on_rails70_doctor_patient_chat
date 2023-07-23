@@ -1,5 +1,5 @@
 module.exports = {
-  pages: "app/javascript/pages",
+  pages: "app/javascript/svelte/pages",
   sourceDir: "public",
   ignore: "",
   dynamicImports: false,

@@ -58,6 +58,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'byebug', platform: :mri
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -81,5 +82,3 @@ group :test do
 end
 
 gem 'foreman', github: 'ddollar/foreman'
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

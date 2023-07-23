@@ -1,6 +1,6 @@
 <script>
   	import { Router } from "@roxi/routify";
-  	//import { routes } from "../.routify/routes";
+  	import { routes } from "../../../.routify/routes";
   import Counter from "./Counter.svelte";
 </script>
 <style global>
@@ -11,4 +11,4 @@
   <h1 class="text-4xl font-bold text-blue-700">Svelte App</h1>
   <Counter />
 </div>
-<!-- <Router {routes} /> -->
+<Router {routes} />
